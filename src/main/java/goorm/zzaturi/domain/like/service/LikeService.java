@@ -25,10 +25,10 @@ public class LikeService {
     private final MemberRepository memberRepository;
 
     public void like(LikeRequestDto requestDto) {
-        Member member = memberRepository.findByEmail(requestDto.member().getEmail())
+        Member member = memberRepository.findByEmail(requestDto.email())
                 .orElseThrow(() -> new MemberNotFoundException(MEMBER_NOT_FOUND));
 
-        Board board = boardRepository.findById(requestDto.board().getId())
+        Board board = boardRepository.findById(requestDto.boardId())
                 .orElseThrow(() -> new BoardNotFoundException(BOARD_NOT_FOUND));
 
         // 이미 좋아요가 되어 있으면 에러
@@ -47,10 +47,10 @@ public class LikeService {
 
     // 좋아요 취소
     public void unlike(LikeRequestDto requestDto) {
-        Member member = memberRepository.findByEmail(requestDto.member().getEmail())
+        Member member = memberRepository.findByEmail(requestDto.email())
                 .orElseThrow(() -> new MemberNotFoundException(MEMBER_NOT_FOUND));
 
-        Board board = boardRepository.findById(requestDto.board().getId())
+        Board board = boardRepository.findById(requestDto.boardId())
                 .orElseThrow(() -> new BoardNotFoundException(BOARD_NOT_FOUND));
 
         Like like = likeRepository.findByMemberAndBoard(member, board)

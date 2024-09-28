@@ -1,14 +1,15 @@
 package goorm.zzaturi.domain.like.dto;
 
-import goorm.zzaturi.domain.board.entity.Board;
-import goorm.zzaturi.domain.member.entity.Member;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
-public record LikeRequestDto(Member member, Board board) {
+@Builder
+public record LikeRequestDto(
 
-    @Builder
-    public LikeRequestDto(Member member, Board board) {
-        this.member = member;
-        this.board = board;
-    }
+        @NotNull(message = "유효한 회원이 아닙니다.")
+        String email,
+
+        @NotNull(message = "유효한 게시글이 아닙니다.")
+        Long boardId) {
+
 }
