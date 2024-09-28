@@ -2,12 +2,10 @@ package goorm.zzaturi.domain.comment.dto.request;
 
 import lombok.Builder;
 
-public record CommentUpdateRequestDto(Long id,
-                                      String content) {
+public record CommentUpdateRequestDto(String content) {
 
     @Builder
-    public CommentUpdateRequestDto(Long id, String content) {
-        this.id = id;
+    public CommentUpdateRequestDto(String content) {
         this.content = content;
     }
 
