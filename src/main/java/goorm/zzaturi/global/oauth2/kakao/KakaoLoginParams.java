@@ -8,11 +8,11 @@ import lombok.Setter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+@Setter
 @Getter
 @NoArgsConstructor
 public class KakaoLoginParams implements OAuthLoginParams {
 
-    @Setter
     private String authorizationCode;
 
     @Override

@@ -16,6 +16,7 @@ public class KakaoInfoResponse implements OAuthInfoResponse {
     @Getter
     @JsonIgnoreProperties(ignoreUnknown = true)
     static class KakaoAccount {
+
         private KakaoProfile profile;
         private String email;
     }
@@ -23,12 +24,21 @@ public class KakaoInfoResponse implements OAuthInfoResponse {
     @Getter
     @JsonIgnoreProperties(ignoreUnknown = true)
     static class KakaoProfile {
+
         private String nickname;
+
+        @JsonProperty("profile_image_url")
+        private String profileImageUrl;
     }
 
     @Override
     public String getEmail() {
         return kakaoAccount.email;
+    }
+
+    @Override
+    public String getImageUrl() {
+        return kakaoAccount.profile.profileImageUrl;
     }
 
     @Override
