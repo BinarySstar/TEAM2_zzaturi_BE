@@ -1,6 +1,7 @@
 package goorm.zzaturi.domain.todo.entity;
 
 import goorm.zzaturi.domain.member.entity.Member;
+import goorm.zzaturi.domain.todo.dto.request.TodoUpdateRequest;
 import goorm.zzaturi.global.entity.BaseTimeEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -59,4 +60,21 @@ public class Todo extends BaseTimeEntity {
     public static Todo.TodoBuilder create() {
         return Todo.builder();
     }
+
+    public void update(TodoUpdateRequest request) {
+        this.title = request.title();
+        this.content = request.content();
+        this.importance = Importance.valueOf(request.importance());
+        this.deadLine = request.deadLine();
+    }
+
+    public void todoComplete() {
+        this.completed = !this.completed;
+        if (this.completed) {
+            this.completedAt = LocalDateTime.now();
+        } else {
+            this.completedAt = null;
+        }
+    }
+
 }

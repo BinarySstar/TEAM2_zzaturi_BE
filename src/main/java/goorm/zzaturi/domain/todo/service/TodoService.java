@@ -7,6 +7,7 @@ import goorm.zzaturi.domain.member.repository.MemberRepository;
 import goorm.zzaturi.domain.todo.dto.TodoPaginationResponseWrapper;
 import goorm.zzaturi.domain.todo.dto.request.TodoCreateRequest;
 import goorm.zzaturi.domain.todo.dto.request.TodoPaginationRequest;
+import goorm.zzaturi.domain.todo.dto.request.TodoUpdateRequest;
 import goorm.zzaturi.domain.todo.dto.response.TodoPaginationDto;
 import goorm.zzaturi.domain.todo.entity.Importance;
 import goorm.zzaturi.domain.todo.entity.Todo;
@@ -63,5 +64,21 @@ public class TodoService {
             return true;
         }
         return false;
+    }
+
+    @Transactional
+    public void update(TodoUpdateRequest request, String email, Long todoId) {
+        Member member = memberRepository.findByEmail(email);
+        Todo todo = todoRepository.findByIdAndMember(todoId, member);
+
+        todo.update(request);
+    }
+
+    @Transactional
+    public void complete(Long todoId, String email) {
+        Member member = memberRepository.findByEmail(email);
+        Todo todo = todoRepository.findByIdAndMember(todoId, member);
+
+        todo.todoComplete();
     }
 }
