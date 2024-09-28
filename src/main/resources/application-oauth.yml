@@ -1,0 +1,17 @@
+spring:
+  security:
+    oauth:
+      kakao:
+        client-id: 070c652651dd04b7f966123cc83b1d98
+      url:
+        auth: https://kauth.kakao.com
+        api: https://kapi.kakao.com
+
+  jwt:
+    secretKey: MDwwDQYJKoZIhvcNAQEBBQADKwAwKAIhAJjRrypsSsCrHKNgbK1ncwMjMDwwDQYJKoZIhvcNAQEBBQADKwAwKAI
+    access:
+      expiration: 1800000 # 30분
+      header: Authorization
+    refresh:
+      expiration: 259200000 # 3
+      header: Authorization-refresh
