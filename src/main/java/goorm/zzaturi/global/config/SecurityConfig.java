@@ -4,6 +4,7 @@ import goorm.zzaturi.global.jwt.JwtAuthenticationEntryPoint;
 import goorm.zzaturi.global.jwt.filter.JwtAuthorizationFilter;
 import goorm.zzaturi.global.jwt.filter.JwtExceptionFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,10 +26,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-            .csrf(AbstractHttpConfigurer::disable)
+            .csrf(csrf -> csrf
+                .ignoringRequestMatchers(PathRequest.toH2Console()) // H2 콘솔 요청에 대해 CSRF 무시
+                .disable() // 그 외 모든 요청에 대해 CSRF 보호 비활성화
+            )
             .authorizeHttpRequests(authorize ->
                 authorize
-                    .requestMatchers("/**").permitAll()
+                    .requestMatchers("/**").permitAll() //TODO 지워야함
+                    .requestMatchers("/h2-console/**").permitAll()
                     .anyRequest().authenticated())
             .exceptionHandling(
                 handle -> handle.authenticationEntryPoint(new JwtAuthenticationEntryPoint()))
@@ -43,7 +48,7 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return webSecurity -> webSecurity.ignoring()
             .requestMatchers("/swagger-ui/**", "/favicon.ico", "/api-docs/**", "/api/auth/**",
-                "/ws/**");
+                "/ws/**", "/h2-console/**");
     }
 
 }

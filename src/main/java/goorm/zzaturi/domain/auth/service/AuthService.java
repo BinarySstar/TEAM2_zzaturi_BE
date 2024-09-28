@@ -2,7 +2,7 @@ package goorm.zzaturi.domain.auth.service;
 
 import goorm.zzaturi.domain.auth.dto.request.ReIssueRequest;
 import goorm.zzaturi.domain.member.entity.Member;
-import goorm.zzaturi.domain.member.repository.MemberRepository;
+import goorm.zzaturi.domain.member.repository.MemberJpaRepository;
 import goorm.zzaturi.global.jwt.dto.TokenDto;
 import goorm.zzaturi.global.jwt.entity.Token;
 import goorm.zzaturi.global.jwt.provider.JwtTokenProvider;
@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final MemberRepository memberRepository;
+    private final MemberJpaRepository memberJpaRepository;
     private final TokenRepository tokenRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final RequestOAuthInfoService requestOAuthInfoService;
@@ -30,7 +30,7 @@ public class AuthService {
     public TokenDto login(OAuthLoginParams params) throws Exception {
         OAuthInfoResponse oAuthInfoResponse = requestOAuthInfoService.request(params);
         String email = findOrCreateMember(oAuthInfoResponse);
-        Member member = memberRepository.findByEmail(email)
+        Member member = memberJpaRepository.findByEmail(email)
             .orElseThrow(Exception::new);
 
         TokenDto tokenDto = jwtTokenProvider.generate(email);
@@ -40,7 +40,7 @@ public class AuthService {
     }
 
     private String findOrCreateMember(OAuthInfoResponse oAuthInfoResponse) {
-        return memberRepository.findByEmail(oAuthInfoResponse.getEmail())
+        return memberJpaRepository.findByEmail(oAuthInfoResponse.getEmail())
             .map(Member::getEmail)
             .orElseGet(() -> createNewMember(oAuthInfoResponse));
     }
@@ -50,9 +50,10 @@ public class AuthService {
             .email(oAuthInfoResponse.getEmail())
             .nickname(oAuthInfoResponse.getNickname())
             .socialType(oAuthInfoResponse.getOAuthProvider())
+            .imageUrl(oAuthInfoResponse.getImageUrl())
             .build();
 
-        return memberRepository.save(member).getEmail();
+        return memberJpaRepository.save(member).getEmail();
     }
 
     private void saveOrUpdateToken(Member member, TokenDto tokenDto) {
@@ -75,7 +76,7 @@ public class AuthService {
         throws Exception {
         Token token = validateRefreshToken(reIssueRequest);
 
-        Member member = memberRepository.findById(token.getMember().getId())
+        Member member = memberJpaRepository.findById(token.getMember().getId())
             .orElseThrow(Exception::new);
 
         return createNewAccessToken(member, token.getRefreshToken());

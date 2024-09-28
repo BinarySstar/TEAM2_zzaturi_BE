@@ -1,10 +1,18 @@
 package goorm.zzaturi.domain.member.repository;
 
 import goorm.zzaturi.domain.member.entity.Member;
-import java.util.Optional;
-import org.springframework.data.jpa.repository.JpaRepository;
+import goorm.zzaturi.global.exception.member.MemberNotFoundException;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
-public interface MemberRepository extends JpaRepository<Member, Long> {
+@RequiredArgsConstructor
+@Repository
+public class MemberRepository {
 
-    Optional<Member> findByEmail(String email);
+    private final MemberJpaRepository memberJpaRepository;
+
+    public Member findByEmail(String email) {
+        return memberJpaRepository.findByEmail(email)
+            .orElseThrow(MemberNotFoundException::new);
+    }
 }

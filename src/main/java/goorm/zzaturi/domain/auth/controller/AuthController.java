@@ -3,6 +3,8 @@ package goorm.zzaturi.domain.auth.controller;
 import goorm.zzaturi.domain.auth.dto.request.ReIssueRequest;
 import goorm.zzaturi.domain.auth.service.AuthService;
 import goorm.zzaturi.global.exception.dto.response.ErrorResponse;
+import goorm.zzaturi.global.jwt.dto.TokenDto;
+import goorm.zzaturi.global.oauth2.kakao.KakaoLoginParams;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -10,8 +12,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import goorm.zzaturi.global.jwt.dto.TokenDto;
-import goorm.zzaturi.global.oauth2.kakao.KakaoLoginParams;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,8 +36,7 @@ public class AuthController {
         @ApiResponse(responseCode = "401", description = "OAuth 인증 실패", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PostMapping("/kakao")
-    public ResponseEntity<TokenDto> loginKakao(@RequestBody KakaoLoginParams params)
-        throws Exception {
+    public ResponseEntity<TokenDto> loginKakao(@RequestBody KakaoLoginParams params) throws Exception {
         return ResponseEntity.status(HttpStatus.OK).body(authService.login(params));
     }
 
