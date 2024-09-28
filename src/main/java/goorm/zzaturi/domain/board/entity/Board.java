@@ -34,7 +34,7 @@ public class Board {
     @Column(nullable = false)
     private LocalDate createdAt;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate modifiedAt;
 
     @Enumerated(EnumType.STRING)

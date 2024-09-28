@@ -18,7 +18,7 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/list/{category}")
+    @GetMapping("/list")
     public ResponseEntity<List<Board>> getBoardList(@RequestParam Category category) {
         List<Board> boardList = boardService.findAllByCategory(category);
         return ResponseEntity.ok(boardList);
@@ -38,7 +38,7 @@ public class BoardController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Board> update(@PathVariable Long id, @RequestBody BoardUpdateRequestDto requestDto) {
-        Board board = boardService.update(requestDto);
+        Board board = boardService.update(id, requestDto);
         return ResponseEntity.ok(board);
     }
 

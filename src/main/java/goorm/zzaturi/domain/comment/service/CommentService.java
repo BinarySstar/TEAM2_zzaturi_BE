@@ -46,8 +46,8 @@ public class CommentService {
     }
 
     @Transactional
-    public Comment updateComment(CommentUpdateRequestDto requestDto) {
-        Comment comment = commentRepository.findById(requestDto.id())
+    public Comment updateComment(Long commentId, CommentUpdateRequestDto requestDto) {
+        Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new CommentNotFoundException(COMMENT_NOT_FOUND));
 
         comment.update(requestDto);

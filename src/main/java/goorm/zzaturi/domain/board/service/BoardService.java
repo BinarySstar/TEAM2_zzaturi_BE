@@ -45,8 +45,8 @@ public class BoardService {
     }
 
     @Transactional
-    public Board update(BoardUpdateRequestDto requestDto) {
-        Board board = boardRepository.findById(requestDto.id())
+    public Board update(Long id, BoardUpdateRequestDto requestDto) {
+        Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new BoardNotFoundException(BOARD_NOT_FOUND));
         board.update(requestDto);
         return boardRepository.save(board);

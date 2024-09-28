@@ -18,22 +18,23 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @GetMapping("/{boardId}")
-    public ResponseEntity<List<Comment>> getAllComments(@PathVariable Long boardId) {
+    @GetMapping
+    public ResponseEntity<List<Comment>> getAllComments(@RequestParam Long boardId) {
         List<Comment> comments = commentService.getAllComments(boardId);
         return ResponseEntity.ok(comments);
     }
 
-    @PostMapping("/{boardId}")
-    public ResponseEntity<CommentCreateResponseDto> createComment(@PathVariable Long boardId,
+    @PostMapping()
+    public ResponseEntity<CommentCreateResponseDto> createComment(@RequestParam Long boardId,
                                                                   @RequestBody CommentCreateRequestDto requestDto) {
         Comment comment = commentService.createComment(boardId, requestDto);
         return ResponseEntity.ok(CommentCreateResponseDto.of(comment));
     }
 
-    @PutMapping("/{boardId}/{commentId}")
-    public ResponseEntity<CommentCreateResponseDto> updateComment(@RequestBody CommentUpdateRequestDto requestDto) {
-        Comment comment = commentService.updateComment(requestDto);
+    @PutMapping("/{commentId}")
+    public ResponseEntity<CommentCreateResponseDto> updateComment(@PathVariable Long commentId,
+                                                                  @RequestBody CommentUpdateRequestDto requestDto) {
+        Comment comment = commentService.updateComment(commentId, requestDto);
         return ResponseEntity.ok(CommentCreateResponseDto.of(comment));
     }
 
