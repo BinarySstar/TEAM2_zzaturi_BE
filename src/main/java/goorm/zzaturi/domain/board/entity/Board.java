@@ -25,7 +25,7 @@ public class Board {
     private String content;
 
     @JoinColumn(name = "member_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
     @Column

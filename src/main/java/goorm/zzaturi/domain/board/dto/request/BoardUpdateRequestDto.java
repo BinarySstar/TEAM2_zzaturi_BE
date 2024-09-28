@@ -1,18 +1,20 @@
 package goorm.zzaturi.domain.board.dto.request;
 
-import goorm.zzaturi.domain.board.entity.Category;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
-public record BoardUpdateRequestDto(String title,
-                                    String content,
-                                    String imageUrl,
-                                    Category category) {
+@Builder
+public record BoardUpdateRequestDto(
 
-    @Builder
-    public BoardUpdateRequestDto(String title, String content, String imageUrl, Category category) {
-        this.title = title;
-        this.content = content;
-        this.imageUrl = imageUrl;
-        this.category = category;
-    }
+        @NotNull(message = "제목을 입력해주세요.")
+        String title,
+
+        @NotNull(message = "내용을 입력해주세요.")
+        String content,
+
+        String imageUrl,
+
+        @NotNull(message = "유효한 카테고리가 아닙니다.")
+        String category)
+{
 }

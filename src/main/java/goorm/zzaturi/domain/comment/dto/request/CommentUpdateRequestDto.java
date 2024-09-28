@@ -1,12 +1,9 @@
 package goorm.zzaturi.domain.comment.dto.request;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
-public record CommentUpdateRequestDto(String content) {
-
-    @Builder
-    public CommentUpdateRequestDto(String content) {
-        this.content = content;
-    }
+@Builder
+public record CommentUpdateRequestDto(@NotNull(message = "내용을 입력하세요.") String content) {
 
 }
