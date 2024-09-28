@@ -1,5 +1,30 @@
-# Created by https://www.toptal.com/developers/gitignore/api/gradle,intellij,java
-# Edit at https://www.toptal.com/developers/gitignore?templates=gradle,intellij,java
+# Created by https://www.toptal.com/developers/gitignore/api/database,git,intellij,java,gradle,windows,macos
+# Edit at https://www.toptal.com/developers/gitignore?templates=database,git,intellij,java,gradle,windows,macos
+
+### Database ###
+*.accdb
+*.db
+*.dbf
+*.mdb
+*.pdb
+*.sqlite3
+*.db-shm
+*.db-wal
+
+### Git ###
+# Created by git for backups. To disable backups in Git:
+# $ git config --global mergetool.keepBackup false
+*.orig
+
+# Created by git when using merge tools for conflicts
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -140,38 +165,6 @@ fabric.properties
 hs_err_pid*
 replay_pid*
 
-### Gradle ###
-.gradle
-**/build/
-!src/**/build/
-
-# Ignore Gradle GUI config
-gradle-app.setting
-
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-
-# Avoid ignore Gradle wrappper properties
-!gradle-wrapper.properties
-
-# Cache of project
-.gradletasknamecache
-
-# Eclipse Gradle plugin generated files
-# Eclipse Core
-.project
-# JDT-specific (Eclipse Java Development Tools)
-.classpath
-
-### Gradle Patch ###
-# Java heap dump
-*.hprof
-
-# End of https://www.toptal.com/developers/gitignore/api/gradle,intellij,java
-
-# Created by https://www.toptal.com/developers/gitignore/api/macos,windows
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows
-
 ### macOS ###
 # General
 .DS_Store
@@ -231,4 +224,36 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,windows
+### Gradle ###
+.gradle
+**/build/
+!src/**/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Avoid ignore Gradle wrappper properties
+!gradle-wrapper.properties
+
+# Cache of project
+.gradletasknamecache
+
+# Eclipse Gradle plugin generated files
+# Eclipse Core
+.project
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+### Gradle Patch ###
+# Java heap dump
+*.hprof
+
+# End of https://www.toptal.com/developers/gitignore/api/database,git,intellij,java,gradle,windows,macos
+
+# *.yml
+*.yml
+/.idea/dataSources.xml
+/.idea/.name
