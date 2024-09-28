@@ -40,6 +40,10 @@ public class Board {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @Column(columnDefinition = "integer default 0")
+    @Setter
+    private int likeCount;
+
     @Builder
     public Board(String title, String content, Member member, String imageUrl, LocalDate createdAt, Category category) {
         this.title = title;
@@ -58,4 +62,5 @@ public class Board {
         this.imageUrl = requestDto.imageUrl();
         this.modifiedAt = LocalDate.now();
     }
+
 }
