@@ -29,6 +29,7 @@ public class BoardService {
     public Board findById(Long id) {
         return boardRepository.findById(id)
                 .orElseThrow(() -> new BoardNotFoundException(BOARD_NOT_FOUND));
+    }
 
     @Transactional
     public Board create(BoardCreateRequestDto requestDto) {
