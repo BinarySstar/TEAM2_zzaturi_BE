@@ -24,7 +24,7 @@ public class Board {
     @Column
     private String content;
 
-    @Column
+    @JoinColumn(name = "member_id")
     @ManyToOne
     private Member member;
 
