@@ -1,11 +1,9 @@
 package goorm.zzaturi.domain.board.entity;
 
+import goorm.zzaturi.domain.board.dto.request.BoardUpdateRequestDto;
 import goorm.zzaturi.domain.member.entity.Member;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -34,13 +32,30 @@ public class Board {
     private String imageUrl;
 
     @Column(nullable = false)
-    // @CreatedDate
     private LocalDate createdAt;
 
     @Column(nullable = false)
     private LocalDate modifiedAt;
 
-    // @Column(columnDefinition = "integer default 0", nullable = false)
     @Enumerated(EnumType.STRING)
     private Category category;
+
+    @Builder
+    public Board(String title, String content, Member member, String imageUrl, LocalDate createdAt, Category category) {
+        this.title = title;
+        this.content = content;
+        this.member = member;
+        this.imageUrl = imageUrl;
+        this.createdAt = createdAt;
+        this.category = category;
+    }
+
+    public void update(BoardUpdateRequestDto requestDto) {
+        if(requestDto.title() != null)
+            this.title = requestDto.title();
+        if(requestDto.content() != null)
+            this.content = requestDto.content();
+        this.imageUrl = requestDto.imageUrl();
+        this.modifiedAt = LocalDate.now();
+    }
 }
