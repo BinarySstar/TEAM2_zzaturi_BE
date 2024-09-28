@@ -1,12 +1,13 @@
 package goorm.zzaturi.global.oauth2.kakao;
 
+import goorm.zzaturi.domain.member.entity.SocialType;
 import goorm.zzaturi.global.oauth2.OAuthLoginParams;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import soon.oauth2demo.member.SocialType;
+
 
 @Getter
 @NoArgsConstructor
