@@ -40,7 +40,7 @@ public class TodoPaginationRepository {
                 todo.member.id.eq(member.getId()),
                 condition
             )
-            .orderBy(todo.id.desc())
+            .orderBy(todo.importance.asc())
             .limit(PAGE_SIZE + 1)
             .fetch();
     }
