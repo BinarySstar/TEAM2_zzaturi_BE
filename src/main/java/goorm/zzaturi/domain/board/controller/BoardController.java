@@ -2,6 +2,7 @@ package goorm.zzaturi.domain.board.controller;
 
 import goorm.zzaturi.domain.board.dto.request.BoardCreateRequestDto;
 import goorm.zzaturi.domain.board.dto.request.BoardUpdateRequestDto;
+
 import goorm.zzaturi.domain.board.dto.response.BoardResponseDto;
 import goorm.zzaturi.domain.board.entity.Board;
 import goorm.zzaturi.domain.board.entity.Category;
@@ -15,6 +16,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +30,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+
 
     @Operation(summary = "게시판 목록 조회", description = "카테고리 별로 게시판 목록을 조회합니다.")
     @Parameter(name = "category", description = "카테고리")

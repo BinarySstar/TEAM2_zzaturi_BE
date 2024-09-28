@@ -17,4 +17,5 @@ public record BoardUpdateRequestDto(
         @NotNull(message = "유효한 카테고리가 아닙니다.")
         String category)
 {
+  
 }

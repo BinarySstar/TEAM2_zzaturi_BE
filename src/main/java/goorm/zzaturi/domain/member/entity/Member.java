@@ -43,6 +43,8 @@ public class Member {
     @OneToOne(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Token token;
 
+    private Long rank;
+
     @Builder
     public Member(String nickname, String email, String imageUrl, SocialType socialType,
         Token token) {
@@ -52,5 +54,10 @@ public class Member {
         this.level = 0L;
         this.socialType = socialType;
         this.token = token;
+        this.rank = null;
+    }
+
+    public void updateRank(Long rank) {
+        this.rank = rank;
     }
 }

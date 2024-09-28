@@ -1,6 +1,7 @@
 package goorm.zzaturi.domain.comment.dto.request;
 
 import goorm.zzaturi.domain.member.entity.Member;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 

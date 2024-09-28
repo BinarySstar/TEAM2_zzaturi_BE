@@ -13,8 +13,10 @@ public enum ErrorCode {
     LIKE_NOT_FOUND(404, "존재하지 않는 좋아요입니다."),
     TEAM_NOT_FOUND(404, "존재하지 않는 팀입니다."),
     TEAM_MEMBER_NOT_FOUND(404, "존재하지 않는 팀 멤버입니다."),
-    ALREADY_LIKED(409, "이미 좋아요를 누른 게시글입니다.");
+    ALREADY_LIKED(409, "이미 좋아요를 누른 게시글입니다."),
+    TODO_NOT_FOUND(404, "존재하지 않는 투두입니다.");
+
 
     private final int status;
     private final String message;
-    }
+}

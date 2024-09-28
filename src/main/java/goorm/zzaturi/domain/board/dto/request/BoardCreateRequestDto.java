@@ -2,6 +2,7 @@ package goorm.zzaturi.domain.board.dto.request;
 
 import goorm.zzaturi.domain.board.entity.Category;
 import goorm.zzaturi.domain.member.entity.Member;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
