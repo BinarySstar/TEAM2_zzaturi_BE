@@ -1,6 +1,7 @@
 package goorm.zzaturi.domain.board.dto.request;
 
 import goorm.zzaturi.domain.board.entity.Category;
+import goorm.zzaturi.domain.member.entity.Member;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
@@ -14,7 +15,7 @@ public record BoardCreateRequestDto(
         String imageUrl,
 
         @NotNull(message = "유효한 회원이 아닙니다.")
-        String memberNickname,
+        Member member,
 
         @NotNull(message = "유효한 카테고리가 아닙니다.")
         Category category) {
